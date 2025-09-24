@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class AppRubrica {
 
     private static final SessionFactory factory = ServerConnectionMySql.buildSessionFactory();
-//    private static final Scanner scanner = new Scanner(System.in);
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int input;
@@ -36,7 +36,6 @@ public class AppRubrica {
                     break;
             }
         } while (input != 0);
-
     }
 
     public static void addContact() {
@@ -46,35 +45,14 @@ public class AppRubrica {
         Contatto contatto = createContact();
         Indirizzi indirizzo = createAddress();
 
-
-        Contatto contatto2 = new Contatto("Giulia", "Bianchi", "giulia.bianchi@email.it", "3339876543");
-        Contatto contatto3 = new Contatto("Luca", "Verdi", "luca.verdi@email.it", "3331122334");
-
-        Indirizzi indirizzo2 = new Indirizzi("Via Milano", "45", "20100", "Milano", "MI");
-        Indirizzi indirizzo3 = new Indirizzi("Via Napoli", "7", "80100", "Napoli", "NA");
-//        Indirizzi indirizzo4 = new Indirizzi("Via Napoli", "7", "80100", "Napoli", "NA");
-//        Indirizzi indirizzo5 = new Indirizzi("Via Bologna", "89", "40100", "Bologna", "BO");
-
         indirizzo.setContatto(contatto);
-        indirizzo2.setContatto(contatto2);
-        indirizzo3.setContatto(contatto3);
-//        indirizzo4.setContatto(contatto2);
-//        indirizzo5.setContatto(contatto2);
-
         contatto.addIndirizzo(indirizzo);
-        contatto2.addIndirizzo(indirizzo2);
-        contatto3.addIndirizzo(indirizzo3);
 
         try (Session session = factory.openSession()) {
             transaction = session.beginTransaction();
 
             session.persist(contatto);
-            session.persist(contatto2);
-            session.persist(contatto3);
-
             session.persist(indirizzo);
-            session.persist(indirizzo2);
-            session.persist(indirizzo3);
 
             transaction.commit();
             System.out.println("Inserimento riuscito");
@@ -85,7 +63,6 @@ public class AppRubrica {
             System.out.println("Hai sbagliato qualcosa");
         }
     }
-
 
     public static void truncateDatabase() {
         Transaction tr = null;
@@ -184,6 +161,7 @@ public class AppRubrica {
      *
      * @return indirizzo -> oggetto della classe Indirizzi
      */
+
     public static Indirizzi createAddress() {
         String address = Indirizzi.addAddress();
         String addressNum = Indirizzi.addAddressNum();

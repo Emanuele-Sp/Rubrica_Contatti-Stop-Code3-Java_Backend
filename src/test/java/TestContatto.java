@@ -2,6 +2,7 @@ import entity.Contatto;
 import entity.Indirizzi;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import validator.Validator;
 
 import java.util.HashSet;
 
@@ -11,32 +12,34 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class TestContatto {
 
+
+
     @Test
     @DisplayName("Test del metodo per l'inserimento del nome")
     public void testAddName() {
         // inserimento di un valore valido
-        assertEquals("Jason", Contatto.addName("Jason"));
+        assertEquals("Jason", Validator.addName("Jason"));
 
         //inserimento del nome con spazi prima e dopo
-        assertEquals("Jason", Contatto.addName("    Jason     "));
+        assertEquals("Jason", Validator.addName("    Jason     "));
 
         //inserimento del nome con lettere minucole e maiuscole
-        assertEquals("Jason", Contatto.addName("JaSoN     "));
+        assertEquals("Jason", Validator.addName("JaSoN     "));
 
         //inserimento del nome con la prima lettere minucola
-        assertEquals("Jason", Contatto.addName("    jason     "));
+        assertEquals("Jason", Validator.addName("    jason     "));
 
         // inserimento del nome con spazi interni
-        assertNotEquals("Jason", Contatto.addName("Jas on"));
+        assertNotEquals("Jason", Validator.addName("Jas on"));
 
         // inserimento del nome con numeri
-        assertNotEquals("Jason", Contatto.addName("Jaso2n"));
+        assertNotEquals("Jason", Validator.addName("Jaso2n"));
 
         // inserimento del nome con caratteri speciali
-        assertNotEquals("Jason", Contatto.addName("Jas@n"));
+        assertNotEquals("Jason", Validator.addName("Jas@n"));
 
         // inserimento di una stringa vuota
-        assertNotEquals("Jason", Contatto.addName(""));
+        assertNotEquals("Jason", Validator.addName(""));
     }
 
     @Test
@@ -67,6 +70,5 @@ public class TestContatto {
         // Verifica che il contatto sia stato impostato sull'indirizzo
         assertEquals(contatto, indirizzo.getContatto());
     }
-
 
 }

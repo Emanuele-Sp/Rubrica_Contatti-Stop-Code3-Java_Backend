@@ -1,7 +1,5 @@
 package entity;
-
 import jakarta.persistence.*;
-
 import java.util.Scanner;
 
 @Entity
@@ -45,13 +43,11 @@ public class Indirizzi {
     @Column(length = 2, nullable = false)
     private String provincia;
 
-
     @ManyToOne
     @JoinColumn(name = "id_contatto")
     private Contatto contatto;
 
     public Indirizzi(){
-
     }
 
     public Indirizzi(Long id, String via, String civico, String cap, String comune, String provincia) {
@@ -61,8 +57,6 @@ public class Indirizzi {
         this.cap = cap;
         this.comune = comune;
         this.provincia = provincia;
-
-
     }
 
     public Indirizzi(String via, String civico, String cap, String comune, String provincia) {
@@ -71,7 +65,6 @@ public class Indirizzi {
         this.cap = cap;
         this.comune = comune;
         this.provincia = provincia;
-
     }
 
     /** Permette l'inserimento della via.
@@ -106,6 +99,7 @@ public class Indirizzi {
             return addAddressNum(); // <--- qui è importante il "return"
         }
     }
+
     public static String addCap() {
         System.out.println("Inserisci il cap:");
         String cap = scanner.nextLine().trim();
@@ -118,6 +112,7 @@ public class Indirizzi {
             return addCap(); // <--- qui è importante il "return"
         }
     }
+
     public static String addCity() {
         System.out.println("Inserisci il city:");
         String city = scanner.nextLine().trim();
@@ -130,6 +125,7 @@ public class Indirizzi {
             return addCity(); // <--- qui è importante il "return"
         }
     }
+
     public static String addProvince() {
         System.out.println("Inserisci il province:");
         String province = scanner.nextLine().trim();

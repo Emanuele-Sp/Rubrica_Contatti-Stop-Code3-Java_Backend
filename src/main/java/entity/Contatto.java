@@ -44,7 +44,6 @@ public class Contatto {
     @OneToMany(mappedBy = "contatto", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Indirizzi> indirizzi = new HashSet<>();
 
-
     public Contatto() {
     }
 
@@ -56,7 +55,6 @@ public class Contatto {
         this.telefono = telefono;
         this.indirizzi = indirizzi;
     }
-
 
     public Contatto(String nome, String cognome, String email, String telefono) {
         this.nome = nome;
@@ -73,17 +71,6 @@ public class Contatto {
      * @return la stringa che viene inserita tramite lo scanner
      */
 
-//    public static String addName(String nome) {
-//        System.out.println("Inserisci il nome:");
-//        nome = nome.trim();
-//        if ((!nome.isEmpty() || nome.length() <= 45) && nome.matches(regexName)) {
-//            nome = nome.substring(0, 1).toUpperCase() + nome.substring(1).toLowerCase();
-//            return nome;
-//        } else {
-//            System.out.println("Il campo non è corretto, inserisci un nome valido.");
-//            return addName(nome); // <--- qui è importante il "return"
-//        }
-//    }
     public static String addName() {
         System.out.println("Inserisci il nome:");
         String nome = scanner.nextLine().trim();
@@ -94,26 +81,6 @@ public class Contatto {
         } else {
             System.out.println("Il campo non è corretto, inserisci un nome valido.");
             return addName(); // <--- qui è importante il "return"
-        }
-    }
-
-
-
-
-
-
-
-
-    public static String addName(String nome) {
-        System.out.println("Inserisci il nome:");
-        nome = nome.trim();
-
-        if ((!nome.isEmpty() || nome.length() <= 45) && nome.matches(regexName)) {
-            nome = nome.substring(0, 1).toUpperCase() + nome.substring(1).toLowerCase();
-            return nome;
-        } else {
-            System.out.println("Il campo non è corretto, inserisci un nome valido.");
-            return null; // <--- qui è importante il "return"
         }
     }
 
@@ -191,7 +158,6 @@ public class Contatto {
         indirizzo.setContatto(this); // aggiorna il lato ManyToOne
         this.indirizzi.add(indirizzo);
     }
-
 
     public Long getId() {
         return id;

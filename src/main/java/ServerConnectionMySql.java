@@ -45,5 +45,4 @@ public class ServerConnectionMySql {
             return null;
         }
     }
-
 }
